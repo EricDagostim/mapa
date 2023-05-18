@@ -173,22 +173,23 @@
 
 
     <script>
-        var map = L.map('map').setView([-28.6846300, -49.3690700], 25);  
+       var map = L.map('map').setView([-28.6846300, -49.3690700], 18);
 
-        var osmLayer = L.tileLayer.wms('https://filipeia.joaopessoa.pb.gov.br/geoserver', {
-            layers: 'cite:1998',
-            format: 'image/png',
-            tiled: true,
-            }).addTo(map);
+var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    opacity: 1.0,
+    minZoom: 1,
+    maxZoom: 18
+}).addTo(map);
 
-        var stamenLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            opacity: 1.0,
-            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©Google</a>',
-            minZoom: 1,
-            maxZoom: 18
-        }).addTo(map)
+var googleLayer = L.tileLayer('https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+    opacity: 1.0,
+    attribution: '<a href="https://www.google.com/permissions/geoguidelines/attr-guide.html">Map data ©Google</a>',
+    minZoom: 1,
+    maxZoom: 18
+}).addTo(map);
 
-        L.control.sideBySide(stamenLayer, osmLayer).addTo(map);
+L.control.sideBySide(googleLayer, osmLayer).addTo(map);
+
     </script>
 </body>
 </html>
