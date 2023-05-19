@@ -1,0 +1,27 @@
+
+.content-popup button{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 0;
+    font-size: 0.7rem;
+    background-color: #529d34;
+    color: #fff;
+}
+
+.content-popup button:hover{    
+    background-color: #529d34c2;
+    cursor: pointer;
+}
+
+.content-popup p{
+    font-weight: 700;
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+}
+
+.content-popup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
