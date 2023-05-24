@@ -9,10 +9,10 @@
     <script src="leaflet-side-by-side.js"></script>
     <link href='leaflet.css' rel='stylesheet' />
     <link rel="stylesheet" href="style.css">
-        <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap-grid.min.css" integrity="sha512-JQksK36WdRekVrvdxNyV3B0Q1huqbTkIQNbz1dlcFVgNynEMRl0F8OSqOGdVppLUDIvsOejhr/W5L3G/b3J+8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap-grid.min.css" integrity="sha512-JQksK36WdRekVrvdxNyV3B0Q1huqbTkIQNbz1dlcFVgNynEMRl0F8OSqOGdVppLUDIvsOejhr/W5L3G/b3J+8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
     body {
         margin: 0;
         padding: 0;
@@ -54,9 +54,9 @@
         position: absolute;
         z-index: 999;
         bottom: 10px;
-        width: 100%;
+        width: 100vw;
         display: flex;
-        padding: 20px;
+        padding: 20px 0px;
         gap: 10px;
         justify-content: center;
         overflow-x: auto;
@@ -75,15 +75,6 @@
 
 <body>
 
-    
-    <!-- <div class="modal-local">
-        <div>
-            <h3>Fotos</h3>
-            <img src="img/majestoso-imagem.jpg" alt="">
-            <img src="img/majestoso-1980.jpg" alt="">
-        </div>
-    </div> -->
-    
     <div id='map'></div>
     
     <div class="content-buttons">
@@ -105,7 +96,6 @@
                 </clipPath>
                 </defs>
                 </svg>
-                
                 
             <p>Estádio</p>
         </button>
@@ -183,73 +173,10 @@
             </svg>
              <p>Pista de Skate</p></button>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js" integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    
-
-    <script>
-        // Inicializa o mapa ao carregar a página
-        var map = L.map('map');
-    
-        var imageBounds = [[-28.695173369051737, -49.402997605368434], [-28.669249822867556, -49.33823390131716]];
-        var imageOverlay = L.imageOverlay('img/criciuma1957.jpg', imageBounds, { opacity: 1.0, minZoom: 1,
-            maxZoom: 13});
-        imageOverlay.addTo(map);
-        
-        var googleLayer = L.tileLayer('https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            opacity: 1.0,
-            attribution: '<a href="https://www.google.com/permissions/geoguidelines/attr-guide.html">Map data ©Google</a>',
-            minZoom: 1,
-            maxZoom: 13
-        }).addTo(map);
-        
-        L.marker([-28.6842749807576, -49.367706616406856]).addTo(map)
-            .bindPopup('<div id="localizacao1" class="content-popup"><p>Estádio Heriberto Hülse</p><button id="btnpop1" type="button">Ver imagens</button></div>')
-            .openPopup();
-    
-        L.marker([-28.67503818880365, -49.368594736048664]).addTo(map)
-            .bindPopup('<div class="content-popup"><p>Praça do Congresso</p><button id="btnpop1" type="button">Ver imagens</button></div>')
-            .openPopup();
-    
-        L.marker([-28.67207236421732, -49.37092236423567]).addTo(map)
-            .bindPopup('<div class="content-popup"><p>Gruta Nossa Senhora de Lourdes</p><button id="btnpop1" type="button">Ver imagens</button></div>')
-            .openPopup();
-    
-        L.marker([-28.67070187205379, -49.416186844802084]).addTo(map)
-            .bindPopup('<div class="content-popup"><p>Parque dos Imigrantes</p><button id="btnpop1" type="button">Ver imagens</button></div>')
-            .openPopup();
-    
-        L.marker([-28.691698859841363, -49.38391270229288]).addTo(map)
-            .bindPopup('<div class="content-popup"><p>Skate Park Criciúma</p><button id="btnpop1" type="button">Ver imagens</button></div>')
-            .openPopup();
-    
-        map.setView([-28.67503818880365, -49.368594736048664], 18);
-    
-        L.control.sideBySide( googleLayer).addTo(map);
-    
-        $("#btnLocal1").click(function(){
-            map.setView([-28.6842749807576, -49.367706616406856], 18);
-        })
-    
-        $("#btnLocal2").click(function(){
-            map.setView([-28.67503818880365, -49.368594736048664], 18);
-        })
-    
-        $("#btnLocal3").click(function(){
-            map.setView([-28.67207236421732, -49.37092236423567], 18);
-        })
-    
-        $("#btnLocal4").click(function(){
-            map.setView([-28.67070187205379, -49.416186844802084], 18);
-        })
-    
-        $("#btnLocal5").click(function(){
-            map.setView([-28.691698859841363, -49.38391270229288], 18);
-        })
-    </script>
-    
-
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js" integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="script.js"></script>
+
 </html>

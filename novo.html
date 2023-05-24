@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map-left,
+    #map-right {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+    }
+  </style>
+
+<body>
+    <div id="map-left"></div>
+  <div id="map-right"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-sync/0.3.0/leaflet.sync.min.js"></script>
+  <script>
+    var mapLeft = L.map('map-left').setView([-28.67503818880365, -49.368594736048664], 18);
+    var mapRight = L.map('map-right').setView([-28.67503818880365, -49.368594736048664], 18);
+
+    var baseLayer = L.tileLayer('https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+      opacity: 1.0,
+      attribution: '<a href="https://www.google.com/permissions/geoguidelines/attr-guide.html">Map data ©Google</a>',
+      minZoom: 1,
+      maxZoom: 16
+    });
+
+    var overlayBounds = [[-28.695173369051737, -49.402997605368434], [-28.669249822867556, -49.33823390131716]];
+    var overlayImage = L.imageOverlay('img/criciuma1957.jpg', overlayBounds, {
+      opacity: 0.5,
+      minZoom: 1,
+      maxZoom: 16
+    });
+
+    baseLayer.addTo(mapLeft);
+    baseLayer.addTo(mapRight);
+    overlayImage.addTo(mapRight);
+
+    mapLeft.sync(mapRight, { syncCursor: true });
+
+    // Ajuste a posição do overlay apenas no lado direito
+    mapRight.on('overlayadd', function (eventLayer) {
+      if (eventLayer.layer === overlayImage) {
+        mapRight.fitBounds(overlayBounds);
+        mapRight.setMaxBounds(overlayBounds);
+      }
+    });
+
+    // Marcadores
+    L.marker([-28.6842749807576, -49.367706616406856]).addTo(mapLeft)
+      .bindPopup('<div class="content-popup"><p>Estádio Heriberto Hülse</p><button id="btnpop1" type="button">Ver imagens</button></div>')
+      .openPopup(); // Marcador Estádio
+
+    L.marker([-28.67503818880365, -49.368594736048664]).addTo(mapLeft)
+      .bindPopup('<div class="content-popup"><p>Praça do Congresso</p><button id="btnpop1" type="button">Ver imagens</button></div>')
+      .openPopup(); // Marcador Praça do Congresso
+
+    L.marker([-28.67207236421732, -49.37092236423567]).addTo(mapLeft)
+      .bindPopup('<div class="content-popup"><p>Gruta Nossa Senhora de Lourdes</p><button id="btnpop1" type="button">Ver imagens</button></div>')
+      .openPopup(); // Marcador Gruta Nossa Senhora de Lourdes
+
+    L.marker([-28.67070187205379, -49.416186844802084]).addTo(mapLeft)
+      .bindPopup('<div class="content-popup"><p>Parque dos Imigrantes</p><button id="btnpop1" type="button">Ver imagens</button></div>')
+      .openPopup(); // Marcador Parque dos Imigrantes
+
+    L.marker([-28.691698859841363, -49.38391270229288]).addTo(mapLeft)
+      .bindPopup('<div class="content-popup"><p>Skate Park Criciúma</p><button id="btnpop1" type="button">Ver imagens</button></div>')
+      .openPopup(); // Marcador Skate Park Criciúma
+  </script>
+</body>
+</html>
